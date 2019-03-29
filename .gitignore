@@ -1,3 +1,4 @@
+.gitignore
 /网易云音乐/__pycache__/
 /网易云音乐/tmp/*.json
 /网易云音乐/tmp.rar
