@@ -6,7 +6,7 @@ Created on Thu Mar 21 14:24:41 2019
 """
 
 
-import time, os, json, copy
+import os, json, copy
 from lib import *
 from song_comments import SongComments
 import pandas as pd
@@ -49,7 +49,7 @@ for i,song_id in enumerate(all_song_id):
         tmp2.pop('comments')
         song_infos[song_id] = tmp2
             
-#%%
+
 all_data = list(map(deal_song_data, all_json))
 all_data2 = pd.concat(all_data)
 
@@ -112,10 +112,8 @@ fig.show()
 fig.savefig('output\\歌手所有歌曲总评论数top20.jpg')
 
 #%% 对所有歌手按照评论数量为热度制作词云
+word_counts = total_comm_by_singer['total'].to_dict()
 
-
-word_counts = collections.Counter( total_comm_by_singer['total'].to_dict())
-word_counts_top10 = word_counts.most_common(10) # 获取前10最高频的词
 mask = np.array(Image.open('timg.jpg')) # 定义词频背景
 wc = wordcloud.WordCloud(
     font_path='C:/Windows/Fonts/simhei.ttf', # 设置字体格式
@@ -155,7 +153,7 @@ fig.savefig('output\\歌手歌曲数量排行top20.jpg')
 
 #%% 对所有歌手按照歌曲数量为热度制作词云
 
-word_counts = collections.Counter( total_songnum_by_singer['total'].to_dict())
+word_counts =  total_songnum_by_singer['total'].to_dict()
 wc = wordcloud.WordCloud(
     font_path='C:/Windows/Fonts/simhei.ttf', # 设置字体格式
     #mask=mask, # 设置背景图
@@ -175,7 +173,7 @@ tmp = total_songnum_by_singer['total'].to_dict()
 tmp.pop('宝宝巴士')
 tmp.pop('英语听力')
 tmp.pop('群星')
-word_counts = collections.Counter( tmp)
+word_counts = tmp
 wc = wordcloud.WordCloud(
     font_path='C:/Windows/Fonts/simhei.ttf', # 设置字体格式
     #mask=mask, # 设置背景图
