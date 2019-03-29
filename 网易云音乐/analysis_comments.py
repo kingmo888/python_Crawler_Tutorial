@@ -206,8 +206,6 @@ for word in seg_list_exact2: # 循环读出每个分词
         object_list.append(word) # 分词追加到列表
 #%%
 word_counts = collections.Counter(object_list) # 对分词做词频统计
-
-
 wc = wordcloud.WordCloud(
     font_path='C:/Windows/Fonts/simhei.ttf', # 设置字体格式
     #mask=mask, # 设置背景图
